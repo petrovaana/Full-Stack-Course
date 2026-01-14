@@ -1,5 +1,4 @@
 const Header = (props) => {
-  console.log(props)
   return (
     <div>
       <h1>{props.course}</h1>
@@ -7,19 +6,25 @@ const Header = (props) => {
   )
 }
 
+const Part = (props) => {
+  return (
+    <p>
+      {props.name} {props.exercises}
+    </p>
+  )
+}
+
 const Content = (props) => {
-  console.log(props)
   return (
     <div>
-      <p>{props.parts[0].part} {props.parts[0].exercises}</p>
-      <p>{props.parts[1].part} {props.parts[1].exercises}</p>
-      <p>{props.parts[2].part} {props.parts[2].exercises}</p>
+      <Part name={props.parts[0].part} exercises={props.parts[0].exercises}/>
+      <Part name={props.parts[1].part} exercises={props.parts[1].exercises}/>
+      <Part name={props.parts[2].part} exercises={props.parts[2].exercises}/>
     </div>
   )
 }
 
 const Total = (props) => {
-  console.log(props)
   const total = props.parts.reduce((sum, part) => sum + part.exercises, 0)
   return (
     <div>
