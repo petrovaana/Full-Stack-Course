@@ -19,20 +19,28 @@ const pos = ({ good, all }) => {
   return (good / all) * 100
 }
 
+const StatisticLine = ({ text, value }) => {
+  return (
+    <p>
+      {text} {value}
+    </p>
+  )
+}
+
 const Statistics = ({ good, neutral, bad }) => {
     const all = sum({ good, neutral, bad })
     if (all === 0) {
-      return "No feedback given"
+      return <p>No feedback given</p>
     }
 
     return (
       <div>
-        <p>good {good}</p>
-        <p>neutral {neutral}</p>
-        <p>bad {bad}</p>
-        <p>all {all}</p>
-        <p>average {ave({ good, bad, all })}</p>
-        <p>positive {pos({ good, all})}%</p>
+        <StatisticLine text="good" value={good} />
+        <StatisticLine text="neutral" value={neutral} />
+        <StatisticLine text="bad" value={bad} />
+        <StatisticLine text="all" value={all}/>
+        <StatisticLine text="average" value={ave({ good, bad, all })}/>
+        <StatisticLine text="positive" value={pos({ good, all }) + '%'}/>
       </div>
     )
   }
