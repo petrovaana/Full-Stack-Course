@@ -4,8 +4,7 @@ const sum = ({ good, neutral, bad }) => {
   return (good + neutral + bad)
 }
 
-const ave = ({ good, neutral, bad }) => {
-  const all = good + neutral + bad
+const ave = ({ good, bad, all }) => {
   if (all === 0) {
     return 0
   }
@@ -13,13 +12,26 @@ const ave = ({ good, neutral, bad }) => {
   return (good - bad) / all
 }
 
-const pos = ({ good, neutral, bad }) => {
-  const all = good + neutral + bad
+const pos = ({ good, all }) => {
   if (all === 0) {
     return 0
   }
   return (good / all) * 100
 }
+
+const Statistics = ({ good, neutral, bad }) => {
+    const all = sum({ good, neutral, bad })
+    return (
+      <div>
+        <p>good {good}</p>
+        <p>neutral {neutral}</p>
+        <p>bad {bad}</p>
+        <p>all {all}</p>
+        <p>average {ave({ good, bad, all })}</p>
+        <p>positive {pos({ good, all})}%</p>
+      </div>
+    )
+  }
 
 const App = () => {
   const [feedback, setFeedback] = useState({
@@ -55,15 +67,12 @@ const App = () => {
       <button onClick={handleNeutralClick}>neutral</button>
       <button onClick={handleBadClick}>bad</button>
 
-      <div>
-        <h1>statistics</h1>
-        <p>good {feedback.good}</p>
-        <p>neutral {feedback.neutral}</p>
-        <p>bad {feedback.bad}</p>
-        <p>all {sum(feedback)}</p>
-        <p>average {ave(feedback)}</p>
-        <p>positive {pos(feedback)}%</p>
-      </div>
+      <h1>statistics</h1>
+      <Statistics
+       good={feedback.good}
+       neutral={feedback.neutral}
+       bad={feedback.bad}
+      />
     </div>
   )
 }
