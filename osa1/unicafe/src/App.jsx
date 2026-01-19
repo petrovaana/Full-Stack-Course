@@ -21,6 +21,10 @@ const pos = ({ good, all }) => {
 
 const Statistics = ({ good, neutral, bad }) => {
     const all = sum({ good, neutral, bad })
+    if (all === 0) {
+      return "No feedback given"
+    }
+
     return (
       <div>
         <p>good {good}</p>
