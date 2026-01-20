@@ -24,4 +24,4 @@ const course = {
 }
 
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App course={course}/>)
+ReactDOM.createRoot(document.getElementById('root')).render(<App course={course} />)
